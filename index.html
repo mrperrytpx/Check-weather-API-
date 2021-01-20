@@ -11,13 +11,16 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap"
       rel="stylesheet"
     />
-    <script
-      src="https://kit.fontawesome.com/ce59392484.js"
-      crossorigin="anonymous"
-    ></script>
   </head>
   <body>
-    <input type="text" required class="input" placeholder="Enter a city or town name">
-    <button class="submit-button" type="submit">Search</button>
+    <section class="input-section">
+      <input type="text" required class="input-city" placeholder="Enter a city or town name">
+      <button class="submit-button" type="submit">Search</button>
+    </section>
+    <section class="display-section">
+      <h1 class="city-of-choice"></h1>
+      <h1 class="weather-of-city"></h1>
+      <h1 class="temperature-of-city"></h1>
+    </section>
   </body>
 </html>
