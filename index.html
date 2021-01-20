@@ -11,16 +11,25 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap"
       rel="stylesheet"
     />
+    <script src="https://kit.fontawesome.com/ce59392484.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <section class="input-section">
-      <input type="text" required class="input-city" placeholder="Enter a city or town name">
+      <input type="text" required autofocus class="input-city" placeholder="Enter a city or town name">
       <button class="submit-button" type="submit">Search</button>
     </section>
     <section class="display-section">
-      <h1 class="city-of-choice"></h1>
-      <h1 class="weather-of-city"></h1>
-      <h1 class="temperature-of-city"></h1>
+      <div class="weather-report">
+        <h1 class="city-of-choice"></h1>
+        <div class="weather-box">
+          <i class="fas fa-cloud-showers-heavy"></i>
+          <div class="idno">
+            <h1 class="weather-of-city"></h1>
+            <p class="weather-description"></p>
+          </div>
+        </div>
+        <h1 class="temperature-of-city"></h1>
+      </div>
     </section>
   </body>
 </html>

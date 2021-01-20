@@ -3,8 +3,138 @@
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-h1 {
+.input-section {
+  background: yellow;
+  height: 100vh;
+  width: 100vw;
+  overflow: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.input-section .input-city,
+.input-section .submit-button {
+  margin: 30px;
+  border-radius: 10px;
+  border: 2px solid black;
+  -webkit-transition: border 0.15s ease;
+  transition: border 0.15s ease;
+}
+
+.input-section .input-city {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-transition: top 0.5s ease;
+  transition: top 0.5s ease;
+  width: 40%;
+  height: 50px;
+  font-size: 1.3rem;
+  text-align: center;
+  outline: none;
+}
+
+.input-section .input-city:focus {
+  border: 2px solid red;
+  top: 10%;
+}
+
+.input-section .input-city::-webkit-input-placeholder {
+  opacity: 0.5;
+}
+
+.input-section .submit-button {
+  width: 10%;
+  height: 25px;
+}
+
+.display-section {
+  position: absolute;
+  height: 90vh;
+  width: 100vw;
+  background: pink;
+  overflow: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.display-section .weather-report {
+  width: 35%;
+  height: 500px;
+  border: 5px solid black;
+  background-color: white;
+  border-radius: 20px;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.display-section .weather-report .city-of-choice {
   font-size: 40px;
+  padding: 0 10px;
+}
+
+.display-section .weather-report .weather-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px;
+  text-align: center;
+}
+
+.display-section .weather-report .weather-box .idno {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 15px;
+}
+
+.display-section .weather-report .weather-box .idno h1,
+.display-section .weather-report .weather-box .idno p {
+  margin: 15px;
+  text-align: center;
+}
+
+i {
+  font-size: 50px;
+  color: orange;
 }
