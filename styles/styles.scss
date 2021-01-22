@@ -12,10 +12,15 @@
   min-height: 100vh;
   overflow: none;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: min-height 1s ease;
+  transition: min-height 0.8s ease;
+
+  .wrong {
+    position: absolute;
+    top: 40%;
+    opacity: 0;
+  }
 
   .input-city,
   .submit-button {
@@ -27,7 +32,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    transition: top 0.5s ease, border 1s ease;
+    transition: top 0.4s ease, border 0.3s ease;
     width: 40%;
     height: 50px;
     font-size: 1.3rem;
@@ -53,6 +58,7 @@
 }
 
 .display-section {
+  position: fixed;
   height: 90vh;
   width: 100vw;
   z-index: 10;
@@ -88,6 +94,12 @@
 i {
   font-size: 50px;
   color: orange;
+}
+
+.error-response {
+  position: absolute;
+  top: 40%;
+  opacity: 1;
 }
 
 @media screen and (max-width: 1000px) {

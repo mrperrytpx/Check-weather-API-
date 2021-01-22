@@ -2,40 +2,54 @@ const inputField = document.querySelector(".input-city");
 const inputSection = document.querySelector(".input-section");
 const cityOfChoice = document.querySelector(".city-of-choice");
 const weatherOfCity = document.querySelector(".weather-of-city");
-const weatherSection = document.querySelector(".display-section")
 const weatherDesc = document.querySelector(".weather-description");
 const temperatureOfCity = document.querySelector(".temperature-of-city");
+const errorResponse = document.querySelector(".wrong");
 
 import { OW_API_KEY } from "./API_key.js";
 
 inputField.addEventListener("keyup", (e) => {
-    if (e.keyCode === 13) {
-        inputField.classList.add("input-submitted");
-        inputSection.classList.add("vh");
+    if (inputField.value === "") {
+        inputSection.classList.remove("vh");
+        inputField.classList.remove("input-submitted");
+    }
 
-        let city = inputField.value;
+    if (e.keyCode === 13) {
+        errorResponse.classList.remove("error-response");
+        errorResponse.classList.add("wrong");
+        let city = inputField.value.toLowerCase();
+        city = city.charAt(0).toUpperCase() + city.slice(1);
+
         cityOfChoice.innerHTML = city;
         const openWeatherURL = "http://api.openweathermap.org/data/2.5/weather?q="
             + city + "&appid=" + OW_API_KEY + "&units=metric";
 
         fetch(openWeatherURL)
+            .then(handleErrors)
             .then((response) => response.json())
             .then((data) => {
+                inputField.classList.add("input-submitted");
+                inputSection.classList.add("vh");
                 const temperature = Math.round(data.main.temp);
                 const temperatureInF = Math.round((temperature * 9 / 5) + 32);
                 const weather = data.weather[0].main;
                 const weatherDescription = data.weather[0].description;
-                console.log(data);
+
                 temperatureOfCity.innerHTML = "Temperature: " + temperature + "°C / " + temperatureInF + "°F";
                 weatherOfCity.innerHTML = weather;
                 weatherDesc.innerHTML = weatherDescription;
-                weatherSection.classList.add("display-section-transition");
-                if (inputField.value === "") {
-                    weatherSection.classList.remove("display-section-transition");
-                }
             })
             .catch((error) => {
                 console.log(error);
             });
     }
 });
+
+function handleErrors(response) {
+    if (!response.ok) {
+        errorResponse.classList.add("error-response");
+        errorResponse.classList.remove("wrong");
+        throw Error(response.statusText);
+    }
+    return response;
+}
