@@ -1,12 +1,12 @@
-const inputField = document.querySelector(".input-city");
 const inputSection = document.querySelector(".input-section");
+const errorResponse = document.querySelector(".wrong");
+const inputField = document.querySelector(".input-city");
 const cityOfChoice = document.querySelector(".city-of-choice");
+const cityTimezone = document.querySelector(".timezone");
 const weatherOfCity = document.querySelector(".weather-of-city");
 const weatherDesc = document.querySelector(".weather-description");
-const temperatureOfCity = document.querySelector(".temperature-of-city");
-const errorResponse = document.querySelector(".wrong");
-const cityTimezone = document.querySelector(".timezone");
 const humidity = document.querySelector(".humidity");
+const temperatureOfCity = document.querySelector(".temperature-of-city");
 
 import { OW_API_KEY } from "./API_key.js";
 
@@ -35,40 +35,36 @@ inputField.addEventListener("keyup", (e) => {
             .then(handleErrors)
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
-
                 const date = new Date();
                 const hour = date.getHours();
                 const minute = date.getMinutes();
 
                 inputField.classList.add("input-submitted");
                 inputSection.classList.add("vh");
+
                 const country = data.sys.country;
                 const temperature = Math.round(data.main.temp);
                 const temperatureInF = Math.round((temperature * 9 / 5) + 32);
                 const weather = data.weather[0].main;
                 const weatherDescription = data.weather[0].description;
                 const timezone = data.timezone;
-                const timezoneHour = timezone / 3600 - 1
+                const timezoneHour = timezone / 3600 - 1;
                 const humid = data.main.humidity;
 
                 let number;
-                if (timezoneHour < 0) {
-                    number = hour - Math.abs(timezoneHour);
-                } else if (timezoneHour > 0) {
-                    number = (hour + Math.abs(timezoneHour))-24;
-                } else {
-                    number = hour;
-                }
+                timezoneHour < 0 ? number = hour - Math.abs(timezoneHour)
+                    : timezoneHour > 0 ? number = (hour + Math.abs(timezoneHour)) - 24
+                        : number = hour;
 
-                cityOfChoice.innerHTML = city + ", " + country;
+                cityOfChoice.innerHTML = `${city}, ${country}`;
                 temperatureOfCity.innerHTML = `Temperature: ${temperature}°C / ${temperatureInF}°F.`;
                 weatherOfCity.innerHTML = weather;
                 weatherDesc.innerHTML = `Description: ${weatherDescription}.`;
-                cityTimezone.innerHTML = `Time in ${city} - ${number}:${minute}`;
+                cityTimezone.innerHTML = `Time in ${city}, ${country} - ${number}:${minute}`;
                 humidity.innerHTML = `Humidity: ${humid}% humid.`;
             })
             .catch((error) => {
+                errorResponse.innerHTML = `Error: "${city}" Not Found. Try again!`
                 console.log(error);
             });
     }

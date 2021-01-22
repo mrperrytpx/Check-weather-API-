@@ -1,3 +1,13 @@
+$backgroundColor: #4d9f0c;
+$padding: 10px;
+
+@mixin flexColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,14 +16,12 @@
 }
 
 .input-section {
-  background: radial-gradient(ellipse at bottom, #4d9f0c, transparent);
+  background: radial-gradient(ellipse at bottom, $backgroundColor, transparent);
   height: 100%;
   width: 100vw;
   min-height: 100vh;
   overflow: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flexColumn;
   transition: min-height 0.8s ease;
 
   .wrong {
@@ -41,7 +49,7 @@
     text-align: center;
     outline: none;
     text-overflow: ellipsis;
-    padding: 10px;
+    padding: $padding;
   }
 
   .input-city:focus {
@@ -58,18 +66,16 @@
 }
 
 .vh {
-  min-height: 15vh;
+  min-height: 12vh;
 }
 
 .display-section {
   position: fixed;
-  height: 85vh;
+  height: 88vh;
   width: 100vw;
-  z-index: 10;
-  background: radial-gradient(ellipse at top, #4d9f0c, transparent);
+  background: radial-gradient(ellipse at top, $backgroundColor, transparent);
   overflow: none;
-  display: flex;
-  flex-direction: column;
+  @include flexColumn;
   .weather-report {
     min-width: 280px;
     width: 45%;
@@ -78,19 +84,17 @@
     background-color: white;
     border-radius: 20px;
     margin: auto;
-    display: flex;
-    flex-direction: column;
+    @include flexColumn;
     justify-content: space-around;
-    align-items: center;
 
     .city-of-choice {
       font-size: 40px;
-      padding: 0 10px;
+      padding: 0 $padding;
       text-decoration: underline;
     }
     .timezone {
       text-align: center;
-      padding: 10px;
+      padding: $padding;
     }
 
     h1,
@@ -110,7 +114,9 @@ i {
   position: absolute;
   color: #333;
   top: 40%;
+  text-align: center;
   opacity: 1;
+  padding: 0 $padding;
 }
 
 @media screen and (max-width: 1000px) {
@@ -134,5 +140,8 @@ i {
     .weather-report {
       width: 85%;
     }
+  }
+  .error-response {
+    top: 35%;
   }
 }

@@ -15,6 +15,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -69,14 +73,13 @@
 }
 
 .vh {
-  min-height: 15vh;
+  min-height: 12vh;
 }
 
 .display-section {
   position: fixed;
-  height: 85vh;
+  height: 88vh;
   width: 100vw;
-  z-index: 10;
   background: radial-gradient(ellipse at top, #4d9f0c, transparent);
   overflow: none;
   display: -webkit-box;
@@ -86,6 +89,12 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .display-section .weather-report {
@@ -103,11 +112,14 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .display-section .weather-report .city-of-choice {
@@ -136,7 +148,9 @@ i {
   position: absolute;
   color: #333;
   top: 40%;
+  text-align: center;
   opacity: 1;
+  padding: 0 10px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -154,5 +168,8 @@ i {
 @media screen and (max-width: 500px) {
   .display-section .weather-report {
     width: 85%;
+  }
+  .error-response {
+    top: 35%;
   }
 }
