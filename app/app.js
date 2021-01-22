@@ -37,6 +37,10 @@ inputField.addEventListener("keyup", (e) => {
             .then((data) => {
                 console.log(data);
 
+                const date = new Date();
+                const hour = date.getHours();
+                const minute = date.getMinutes();
+
                 inputField.classList.add("input-submitted");
                 inputSection.classList.add("vh");
                 const country = data.sys.country;
@@ -45,17 +49,24 @@ inputField.addEventListener("keyup", (e) => {
                 const weather = data.weather[0].main;
                 const weatherDescription = data.weather[0].description;
                 const timezone = data.timezone;
+                const timezoneHour = timezone / 3600 - 1
                 const humid = data.main.humidity;
 
-                cityOfChoice.innerHTML = city + ", " + country;
-                temperatureOfCity.innerHTML = "Temperature: " + temperature + "°C / " + temperatureInF + "°F";
-                weatherOfCity.innerHTML = weather;
-                weatherDesc.innerHTML = "Description: " + weatherDescription;
-                cityTimezone.innerHTML = timezone / 3600 - 1 >= 0
-                    ? "Timezone: " + Math.abs(timezone / 3600 - 1) + " hours ahead"
-                    : "Timezone: " + Math.abs(timezone / 3600 - 1) + " hours behind";
-                humidity.innerHTML = "Humidity: " + humid + "% humid.";
+                let number;
+                if (timezoneHour < 0) {
+                    number = hour - Math.abs(timezoneHour);
+                } else if (timezoneHour > 0) {
+                    number = (hour + Math.abs(timezoneHour))-24;
+                } else {
+                    number = hour;
+                }
 
+                cityOfChoice.innerHTML = city + ", " + country;
+                temperatureOfCity.innerHTML = `Temperature: ${temperature}°C / ${temperatureInF}°F.`;
+                weatherOfCity.innerHTML = weather;
+                weatherDesc.innerHTML = `Description: ${weatherDescription}.`;
+                cityTimezone.innerHTML = `Time in ${city} - ${number}:${minute}`;
+                humidity.innerHTML = `Humidity: ${humid}% humid.`;
             })
             .catch((error) => {
                 console.log(error);
