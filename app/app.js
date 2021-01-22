@@ -5,6 +5,8 @@ const weatherOfCity = document.querySelector(".weather-of-city");
 const weatherDesc = document.querySelector(".weather-description");
 const temperatureOfCity = document.querySelector(".temperature-of-city");
 const errorResponse = document.querySelector(".wrong");
+const cityTimezone = document.querySelector(".timezone");
+const humidity = document.querySelector(".humidity");
 
 import { OW_API_KEY } from "./API_key.js";
 
@@ -17,10 +19,15 @@ inputField.addEventListener("keyup", (e) => {
     if (e.keyCode === 13) {
         errorResponse.classList.remove("error-response");
         errorResponse.classList.add("wrong");
-        let city = inputField.value.toLowerCase();
-        city = city.charAt(0).toUpperCase() + city.slice(1);
 
-        cityOfChoice.innerHTML = city;
+        let inputCity = inputField.value.toLowerCase();
+        inputCity = inputCity.split(" ");
+        let city = [];
+        for (let i = 0; i < inputCity.length; i++) {
+            let adding = inputCity[i].charAt(0).toUpperCase() + inputCity[i].slice(1);
+            city.push(adding);
+        }
+        city = city.join(" ");
         const openWeatherURL = "http://api.openweathermap.org/data/2.5/weather?q="
             + city + "&appid=" + OW_API_KEY + "&units=metric";
 
@@ -28,16 +35,27 @@ inputField.addEventListener("keyup", (e) => {
             .then(handleErrors)
             .then((response) => response.json())
             .then((data) => {
+                console.log(data);
+
                 inputField.classList.add("input-submitted");
                 inputSection.classList.add("vh");
+                const country = data.sys.country;
                 const temperature = Math.round(data.main.temp);
                 const temperatureInF = Math.round((temperature * 9 / 5) + 32);
                 const weather = data.weather[0].main;
                 const weatherDescription = data.weather[0].description;
+                const timezone = data.timezone;
+                const humid = data.main.humidity;
 
+                cityOfChoice.innerHTML = city + ", " + country;
                 temperatureOfCity.innerHTML = "Temperature: " + temperature + "°C / " + temperatureInF + "°F";
                 weatherOfCity.innerHTML = weather;
-                weatherDesc.innerHTML = weatherDescription;
+                weatherDesc.innerHTML = "Description: " + weatherDescription;
+                cityTimezone.innerHTML = timezone / 3600 - 1 >= 0
+                    ? "Timezone: " + Math.abs(timezone / 3600 - 1) + " hours ahead"
+                    : "Timezone: " + Math.abs(timezone / 3600 - 1) + " hours behind";
+                humidity.innerHTML = "Humidity: " + humid + "% humid.";
+
             })
             .catch((error) => {
                 console.log(error);
