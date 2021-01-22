@@ -2,6 +2,7 @@ const inputField = document.querySelector(".input-city");
 const inputSection = document.querySelector(".input-section");
 const cityOfChoice = document.querySelector(".city-of-choice");
 const weatherOfCity = document.querySelector(".weather-of-city");
+const weatherSection = document.querySelector(".display-section")
 const weatherDesc = document.querySelector(".weather-description");
 const temperatureOfCity = document.querySelector(".temperature-of-city");
 
@@ -28,6 +29,10 @@ inputField.addEventListener("keyup", (e) => {
                 temperatureOfCity.innerHTML = "Temperature: " + temperature + "°C / " + temperatureInF + "°F";
                 weatherOfCity.innerHTML = weather;
                 weatherDesc.innerHTML = weatherDescription;
+                weatherSection.classList.add("display-section-transition");
+                if (inputField.value === "") {
+                    weatherSection.classList.remove("display-section-transition");
+                }
             })
             .catch((error) => {
                 console.log(error);
