@@ -20,14 +20,14 @@ inputField.addEventListener("keyup", (e) => {
         errorResponse.classList.remove("error-response");
         errorResponse.classList.add("wrong");
 
-        let inputCity = inputField.value.toLowerCase();
-        inputCity = inputCity.split(" ");
+        let inputCity = inputField.value.toLowerCase().split(" ");
         let city = [];
         for (let i = 0; i < inputCity.length; i++) {
             let adding = inputCity[i].charAt(0).toUpperCase() + inputCity[i].slice(1);
             city.push(adding);
         }
         city = city.join(" ");
+
         const openWeatherURL = "http://api.openweathermap.org/data/2.5/weather?q="
             + city + "&appid=" + OW_API_KEY + "&units=metric";
 
@@ -35,12 +35,12 @@ inputField.addEventListener("keyup", (e) => {
             .then(handleErrors)
             .then((response) => response.json())
             .then((data) => {
+                inputField.classList.add("input-submitted");
+                inputSection.classList.add("vh");
+                
                 const date = new Date();
                 const hour = date.getHours();
                 const minute = date.getMinutes();
-
-                inputField.classList.add("input-submitted");
-                inputSection.classList.add("vh");
 
                 const country = data.sys.country;
                 const temperature = Math.round(data.main.temp);
