@@ -47,13 +47,12 @@ inputField.addEventListener("keyup", (e) => {
                 const temperatureInF = Math.round((temperature * 9 / 5) + 32);
                 const weather = data.weather[0].main;
                 const weatherDescription = data.weather[0].description;
-                const timezone = data.timezone;
-                const timezoneHour = timezone / 3600 - 1;
+                const timezone = (data.timezone) / 3600 - 1;
                 const humid = data.main.humidity;
 
                 let number;
-                timezoneHour < 0 ? number = hour - Math.abs(timezoneHour)
-                    : timezoneHour > 0 ? number = (hour + Math.abs(timezoneHour)) - 24
+                timezone < 0 ? number = hour - Math.abs(timezone)
+                    : timezone > 0 ? number = (hour + Math.abs(timezone)) - 24
                         : number = hour;
 
                 cityOfChoice.innerHTML = `${city}, ${country}`;

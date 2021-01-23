@@ -1,4 +1,4 @@
-$backgroundColor: #4d9f0c;
+$backgroundColor: #437bbc;
 $padding: 10px;
 
 @mixin flexColumn {
@@ -74,7 +74,6 @@ $padding: 10px;
   height: 88vh;
   width: 100vw;
   background: radial-gradient(ellipse at top, $backgroundColor, transparent);
-  overflow: none;
   @include flexColumn;
   .weather-report {
     min-width: 280px;
