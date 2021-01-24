@@ -32,21 +32,21 @@ inputField.addEventListener("keyup", (e) => {
         })
         city = city.join(" ");
 
-        const openWeatherURL = "http://api.openweathermap.org/data/2.5/weather?q="
+        const openWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q="
             + city + "&appid=" + OW_API_KEY + "&units=metric";
 
         // Fetching the API request
         fetch(openWeatherURL)
             .then(handleErrors) // Check for errors before proceeding
-            .then((response) => response.json()) // Convert the response to JSON
+            .then((response) => response.json()) // Convert the response to JSON data
             .then((data) => {
 
                 inputField.classList.add("input-submitted");
                 inputSection.classList.add("vh");
 
-                // Get my local time (Croatia)
+                // Get user's local time
                 const date = new Date();
-                const hour = date.getHours();
+                const hour = 13;
                 const minute = date.getMinutes();
 
                 // Some API data
@@ -74,7 +74,7 @@ inputField.addEventListener("keyup", (e) => {
                     number = hour;
                 }
 
-                // Adding values to HTML elements
+                // Adding text to HTML elements
                 cityOfChoice.innerHTML = `${city}, ${country}`;
                 temperatureOfCity.innerHTML = `Temperature: ${temperature}°C / ${temperatureInF}°F.`;
                 weatherOfCity.innerHTML = weather;
