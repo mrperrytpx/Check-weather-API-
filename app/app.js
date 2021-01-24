@@ -32,8 +32,7 @@ inputField.addEventListener("keyup", (e) => {
         })
         city = city.join(" ");
 
-        const openWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q="
-            + city + "&appid=" + OW_API_KEY + "&units=metric";
+        const openWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${OW_API_KEY}&units=metric`;
 
         // Fetching the API request
         fetch(openWeatherURL)
@@ -46,7 +45,7 @@ inputField.addEventListener("keyup", (e) => {
 
                 // Get user's local time
                 const date = new Date();
-                const hour = 13;
+                const hour = date.getHours();
                 const minute = date.getMinutes();
 
                 // Some API data
