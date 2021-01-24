@@ -9,7 +9,8 @@ const humidity = document.querySelector(".humidity");
 const temperatureOfCity = document.querySelector(".temperature-of-city");
 
 // Importing OpenWeather API key from local file
-import { OW_API_KEY } from "./API_key.js";
+// import { OW_API_KEY } from "./API_key.js";
+const OW_API_KEY = "7e5ad3fa25b132d1ffede988a656859a";
 
 // Adding keyup event listener to the input
 inputField.addEventListener("keyup", (e) => {
