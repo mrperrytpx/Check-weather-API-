@@ -60,6 +60,9 @@ inputField.addEventListener("keyup", (e) => {
 
                 let number;
                 number = hour + (userTimezone + targetTimezone);
+                if (number > 24) {
+                    number -= 24;
+                }
 
                 // Adding text to HTML elements
                 cityOfChoice.innerHTML = `${city}, ${country}`;
