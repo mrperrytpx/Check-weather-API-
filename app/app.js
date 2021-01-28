@@ -46,7 +46,7 @@ inputField.addEventListener("keyup", (e) => {
                 // Get user's local time
                 const date = new Date();
                 const minute = date.getMinutes();
-                const hour = date.getHours();
+                const hour = 7;
                 const userTimezone = date.getTimezoneOffset() / 60;
 
                 // Some API data
@@ -62,6 +62,8 @@ inputField.addEventListener("keyup", (e) => {
                 number = hour + (userTimezone + targetTimezone);
                 if (number > 24) {
                     number -= 24;
+                } else if (number < 0) {
+                    number = 24 - Math.abs(number);
                 }
 
                 // Adding text to HTML elements
