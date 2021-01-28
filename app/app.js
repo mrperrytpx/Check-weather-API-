@@ -46,6 +46,7 @@ inputField.addEventListener("keyup", (e) => {
                 // Get user's local time
                 const date = new Date();
                 const minute = date.getMinutes();
+                const hour = date.getHours();
                 const userTimezone = date.getTimezoneOffset() / 60;
 
                 // Some API data
@@ -58,7 +59,7 @@ inputField.addEventListener("keyup", (e) => {
                 const humid = data.main.humidity;
 
                 let number;
-                number = userTimezone + targetTimezone;
+                number = hour + (userTimezone + targetTimezone);
 
                 // Adding text to HTML elements
                 cityOfChoice.innerHTML = `${city}, ${country}`;
