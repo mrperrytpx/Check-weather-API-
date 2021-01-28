@@ -45,8 +45,8 @@ inputField.addEventListener("keyup", (e) => {
 
                 // Get user's local time
                 const date = new Date();
-                const hour = date.getHours();
                 const minute = date.getMinutes();
+                const userTimezone = date.getTimezoneOffset() / 60;
 
                 // Some API data
                 const country = data.sys.country;
@@ -54,24 +54,11 @@ inputField.addEventListener("keyup", (e) => {
                 const temperatureInF = Math.round((temperature * 9 / 5) + 32);
                 const weather = data.weather[0].main;
                 const weatherDescription = data.weather[0].description;
-                const timezone = (data.timezone) / 3600 - 1;
+                const targetTimezone = (data.timezone) / 3600;
                 const humid = data.main.humidity;
-    
-                // Calculating proper time for different timezones
+
                 let number;
-                if (timezone < 0) {
-                    number = hour - Math.abs(timezone);
-                    if (number < 0) {
-                        number += 24;
-                    }
-                } else if (timezone > 0) {
-                    number = (hour + Math.abs(timezone));
-                    if (number > 24) {
-                        number -= 24;
-                    }
-                } else {
-                    number = hour;
-                }
+                number = userTimezone + targetTimezone;
 
                 // Adding text to HTML elements
                 cityOfChoice.innerHTML = `${city}, ${country}`;
