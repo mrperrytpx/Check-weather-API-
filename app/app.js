@@ -46,7 +46,7 @@ inputField.addEventListener("keyup", (e) => {
                 // Get user's local time
                 const date = new Date();
                 const minute = date.getMinutes();
-                const hour = 7;
+                const hour = date.getHours();
                 const userTimezone = date.getTimezoneOffset() / 60;
 
                 // Some API data
