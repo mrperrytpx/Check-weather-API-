@@ -60,7 +60,7 @@ inputField.addEventListener("keyup", (e) => {
 
                 let number;
                 number = hour + (userTimezone + targetTimezone);
-                if (number > 24) {
+                if (number >= 24) {
                     number -= 24;
                 } else if (number < 0) {
                     number = 24 - Math.abs(number);
