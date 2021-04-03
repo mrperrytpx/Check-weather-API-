@@ -66,7 +66,7 @@ inputField.addEventListener("keyup", (e) => {
                     number = 24 - Math.abs(number);
                 }
 
-                // Adding text to HTML elements
+                // Adding text to HTML elements - change to hh mm format please
                 cityOfChoice.innerHTML = `${city}, ${country}`;
                 temperatureOfCity.innerHTML = `Temperature: ${temperature}°C / ${temperatureInF}°F.`;
                 weatherOfCity.innerHTML = weather;
