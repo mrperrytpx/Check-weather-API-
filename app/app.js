@@ -66,12 +66,12 @@ inputField.addEventListener("keyup", (e) => {
                     number = 24 - Math.abs(number);
                 }
 
-                // Adding text to HTML elements - change to hh mm format please
+                // Adding text to HTML elements
                 cityOfChoice.innerHTML = `${city}, ${country}`;
                 temperatureOfCity.innerHTML = `Temperature: ${temperature}°C / ${temperatureInF}°F.`;
                 weatherOfCity.innerHTML = weather;
                 weatherDesc.innerHTML = `Description: ${weatherDescription}.`;
-                cityTimezone.innerHTML = `Time in ${city}, ${country} - ${number}:${minute}`;
+                cityTimezone.innerHTML = `Time in ${city}, ${country} - ${number < 10 ? `0${number}` : number}:${minute < 10 ? `0${minute}` : minute}`;
                 humidity.innerHTML = `Humidity: ${humid}% humid.`;
             })
             .catch((error) => {
